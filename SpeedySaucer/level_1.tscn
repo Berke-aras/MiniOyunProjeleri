@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://b82ndjp5wqaad"]
+
+[ext_resource type="Texture2D" uid="uid://bvhi3gck0y6mb" path="res://purple.png" id="1_fo1kr"]
+[ext_resource type="Script" path="res://level.gd" id="1_jre5c"]
+[ext_resource type="PackedScene" uid="uid://jdgq8uwpbdly" path="res://player.tscn" id="2_2gboo"]
+[ext_resource type="PackedScene" uid="uid://binxk0a10dju3" path="res://maze.tscn" id="4_tkimi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cn5bp"]
+line_spacing = 4.0
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_a1ntt"]
+font_size = 40
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_jre5c")
+
+[node name="Graphics" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Graphics"]
+layer = -20
+
+[node name="Background" type="TextureRect" parent="Graphics/CanvasLayer"]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fo1kr")
+stretch_mode = 1
+
+[node name="StartLabel" type="Label" parent="Graphics"]
+z_index = 10
+offset_left = 453.0
+offset_top = 74.0
+offset_right = 581.0
+offset_bottom = 142.0
+rotation = 0.0471882
+text = "START"
+label_settings = SubResource("LabelSettings_cn5bp")
+
+[node name="EndLabel" type="Label" parent="Graphics"]
+z_index = 10
+offset_left = 267.0
+offset_top = 3132.0
+offset_right = 395.0
+offset_bottom = 3200.0
+rotation = -0.445046
+text = "END"
+label_settings = SubResource("LabelSettings_cn5bp")
+
+[node name="Tutorial" type="Label" parent="Graphics"]
+offset_left = -62.0
+offset_top = 383.0
+offset_right = 280.0
+offset_bottom = 557.0
+text = "TUTORIAL
+
+Dont Hit the walls"
+label_settings = SubResource("LabelSettings_a1ntt")
+
+[node name="Player" parent="." instance=ExtResource("2_2gboo")]
+z_index = 100
+position = Vector2(501, 243)
+
+[node name="Maze" parent="." instance=ExtResource("4_tkimi")]
+z_index = -20
+position = Vector2(591, 610)
+
+[connection signal="body_exited" from="Maze" to="." method="_on_maze_body_exited"]

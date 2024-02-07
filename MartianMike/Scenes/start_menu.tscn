@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://rm4h0ta4eh2u"]
+
+[ext_resource type="PackedScene" uid="uid://baymx4img1ly3" path="res://Scenes/bg.tscn" id="1_0dy7d"]
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_dtwxm"]
+[ext_resource type="Texture2D" uid="uid://bduwbd50grx68" path="res://Assets/textures/bg/Green.png" id="2_vcugp"]
+[ext_resource type="FontFile" uid="uid://dodco138um5cn" path="res://Assets/fonts/Kenney Pixel Square.ttf" id="3_pndfm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pmarl"]
+font = ExtResource("3_pndfm")
+font_size = 32
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0.945098, 0, 1, 0)
+shadow_offset = Vector2(3, 3)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dtwxm")
+
+[node name="BG" parent="." instance=ExtResource("1_0dy7d")]
+bg_texture = ExtResource("2_vcugp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MARTIAN MIKE"
+label_settings = SubResource("LabelSettings_pmarl")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -1.0
+offset_right = 34.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_pndfm")
+text = "START"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = 55.0
+offset_right = 26.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_pndfm")
+text = "EXIT"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

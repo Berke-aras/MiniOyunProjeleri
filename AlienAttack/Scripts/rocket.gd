@@ -1,0 +1,21 @@
+extends Area2D
+
+@export var speed = 600
+
+@onready var visible_notifier = $VisibleOnScreenNotifier2D
+
+func _ready():
+	visible_notifier.connect("screen_exited", _on_screen_exited)
+
+func _physics_process(delta):
+	global_position.x += speed*delta
+	#print(delta*speed)
+
+func _on_screen_exited():
+	queue_free()
+
+
+func _on_area_entered(area):
+	queue_free()
+	#area.queue_free()
+	area.die() #die function are the entered the rocket
